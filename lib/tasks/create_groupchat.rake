@@ -25,13 +25,13 @@ task create_groupchat: :environment do
     owner: owner,
     userlist: userlist
   })
-  puts res.body
+  puts res
   Qywechat::Notifier::QyAPI.api_message.send_groupchat('create groupchat ok')
 end
 
 task :send_message, [:content, :safe] => :environment do
-  content = ENV['content']
-  safe = ENV['safe']
+  putst content = ENV['content'] || 'test send_message'
+  safe = ENV['safe'] || 0
   client = Qywechat::Notifier::QyAPI::Client.new
   res = client.post('/cgi-bin/appchat/send', params: { access_token: Qywechat::Notifier::QyAPI.api_token.get_access_token }, json: {
     chatid: Qywechat::Notifier::QyAPI.chatid,
@@ -39,6 +39,6 @@ task :send_message, [:content, :safe] => :environment do
     content: content,
     safe: safe
   })
-  puts res.body
+  puts res
   Qywechat::Notifier::QyAPI.api_message.send_groupchat('send_message to groupchat ok')
 end
