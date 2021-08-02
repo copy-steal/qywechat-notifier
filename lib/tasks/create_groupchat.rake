@@ -10,10 +10,10 @@ task create_groupchat: :environment do
   puts('请输入群聊名:')
   name = STDIN.gets().gsub(/\r\n|\n/, '')
   raise '群聊名不能为空' unless name.present?
-  puts('请输入群主名:')
+  puts('请输入群主名(企业内唯一ID):')
   owner = STDIN.gets().gsub(/\r\n|\n/, '')
   raise '群主名不能为空' unless owner.present?
-  puts('请输入一个群员名(额外的群员可在新创建的群内直接添加):')
+  puts('请输入一个群员名(企业内唯一ID,额外的群员可在新创建的群内直接添加):')
   username = STDIN.gets().gsub(/\r\n|\n/, '')
   raise '群员名不能为空' unless username.present?
   userlist = [owner, username]
